@@ -1,0 +1,22 @@
+{
+    "name": "phalcana/userguide",
+    "description": "Userguide module for Phalcana project based of the module for Kohana of the same name",
+    "type": "phalcana-module",
+    "keywords": ["Phalcana", "Phalcon", "Kohana"],
+    "license": "BSD-3-Clause",
+    "homepage": "http://phalcana.com",
+    "authors": [
+        {
+            "name": "Neil Brayfield",
+            "email": "neil@brayfield.co.uk"
+        }
+    ],
+    "support": {
+        "email": "support@phalcana.com",
+        "issues": "https://github.com/braf/phalcana-userguide/issues"
+    },
+    "require": {
+        "phalcana/installer": "dev-master",
+        "michelf/php-markdown": "dev-master"
+    }
+}

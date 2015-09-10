@@ -1,0 +1,373 @@
+
+* {
+	outline: none;
+}
+
+header .row {
+	.column {
+		padding-top: 0.7em;
+		padding-bottom: 0.7em;
+		h1 {
+			
+			font-family: $font-family-sans-serif;
+			font-size: 1.5rem;
+			font-weight: normal;
+			vertical-align: middle;
+		}
+		img {
+			margin-left: -2px;
+		}
+
+		a {
+			padding-top: 1em;
+			font-size: 1.5rem;
+			vertical-align: middle;
+			color: $jet;
+			margin-right: 1em;
+			&.active {
+				border-bottom: 1px solid $steel;
+			}
+		}
+	}
+
+}
+
+a {
+	color: #780000;
+	transition: color 0.3s ease;
+	&:hover, &:active, &:focus {
+		color: #520202;
+	}
+}
+
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin-left: 0;
+	margin-bottom: 0;
+	li {
+		position: relative;
+		padding-left: 1.5em;
+		&:before {
+			content:'–';	
+			position: absolute;
+			left:3px;
+			top:0;
+			line-height: 1.5;
+		}
+
+	}
+}
+
+pre.debug {
+	padding: 0.3em 1em;
+	overflow-x: auto;
+	small {
+		color: $aluminum;
+		font-size: 80%;
+	}
+	span.len, span.pointer {
+		color: $success-color;
+	}
+	span.len {
+		font-size: 80%;
+	}
+	span.string {
+		color: #FFAA3E;
+	}
+	span.int {
+		color: #5BA1CF;
+
+	}
+
+}
+
+
+pre {
+	font-family: $font-family-monospace;
+	color: $iron;
+	margin-bottom: 1.25rem;
+	padding: 0.3em 0;
+	background-color: $jet;
+	code {
+		color: $iron;
+		background-color: $jet;
+		border: 0;
+		display: block;
+		padding: 0.5em 1em;
+	}
+
+	.line {
+		.number {
+			display: inline-block;
+			width: 50px;
+			padding-left: 0.5em;
+			padding-right: 0.5em;
+			text-align: right;
+		}
+		.code {
+			padding-left: 0.5em;
+
+		}
+
+	}
+
+}
+
+section#main {
+	padding-top: 1em;
+
+	.content {
+		dl {
+			margin-top: 1.25rem;
+			margin-bottom: 1.25rem;
+			padding-left: 1px;
+		}
+
+		h1 {
+			font-size: 1.6875rem;
+		}
+		h2 {
+			&:first-child {
+				margin-top: 0.2rem;
+			}
+			font-size: 1.5rem;
+			margin-top: 1.25em;
+		}
+
+
+		ul {
+			margin-bottom: 1.25rem;
+		}
+		.class-name {
+			h3 {
+				display: inline;
+			}
+		}
+		.namespace, .implements, .parents {
+			margin-bottom: 0.5rem;
+			h4{
+				display: inline;
+			}
+		}
+		.parent, .class-name, .namespace, .implements {
+			span {
+				color: $steel;
+				font-size: 0.9em;
+			}
+		}
+		.tags {
+			font-size: 0.9em;
+			border:0;
+			background-color: transparent;
+			tr {
+				border:0;
+				background-color: transparent;	
+				th {
+					color: $steel;
+					font-weight: normal;
+					padding: 0;
+					padding-right: 1em;	
+				}
+				td {
+					padding: 0;	
+
+				}
+			}
+		}
+		.class-header {
+			.description {
+				margin-top: 1.5rem;
+			}
+		}
+		.note {
+			padding: 2em 2em 2em 5em;
+			border-radius: 1em;
+			background: scale-color($iron, $lightness: 20%) url(../img/lightbulb_48.png) no-repeat 1em center;
+		}
+
+		.tags, #class-nav {
+			margin-bottom: 1.25rem;
+		}
+
+		.properties {
+			dt {
+				font-size: 1.1em;
+				margin-bottom: 0.5em;
+				small {
+					font-size: 80%;
+					font-weight: normal;
+				}
+				code {
+					padding: 0;
+					background-color: transparent;
+					color: #0077C6;
+					border: 0;
+				}
+			}
+			dd {
+				margin-bottom: 0;
+				padding-left: 1em;
+			}
+			pre {
+				margin-bottom: 2rem;
+			}
+			p:last-child {
+				margin-bottom: 0.3em;
+			}
+		}
+
+		.method {
+			margin: 1.25rem 0 3rem;
+			&.panel {
+				background: scale-color($iron, $lightness: 10%);
+				border-radius: 0.5em;
+				border: 0;
+			}
+			.inner {
+				padding-left: 1em;	
+			}
+			ul {
+				margin-top: 0.5em;
+			}
+			pre { overflow: auto; }
+			.method-head {
+				margin-bottom: 1.25rem;
+				font-size: 1.1em;
+				span.data-type small {
+					color: #0077C6;
+				}
+			}
+			div {
+				small {
+					font-size: 80%;
+				}
+			}
+
+			.tags, .params, .returns {
+				ul {
+					li {
+						padding-left: 0;
+						&:before { display: none; }
+						small {
+							font-weight: bold;
+							font-size: 90%;
+						}
+						code {
+							padding: 0;
+							background-color: transparent;
+							color: #0077C6;
+							border: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	#menu {
+		border-right: 1px solid $base;
+		margin-bottom: 1.25rem;
+		h3 a {
+			color: $jet;
+		}
+		h2 {
+			font-size: 1.5rem;
+		}
+		ul {
+			margin-left: 0;
+		}
+		&> ul {
+			margin-bottom: 1.25rem;
+		}
+		&> ul > li {
+			padding-left: 2px;
+			font-size: 1rem;
+			&:before {
+				content: "";
+			}
+
+			&> ul {
+				padding-top: 0.2em;
+			}
+		}
+	}
+}
+
+footer {
+	.row {
+		padding-top: 1em;
+		padding-bottom: 1em;
+		color: $charcoal;
+	}
+}
+
+.content .syntaxhighlighter{
+	overflow-y: hidden !important;
+	background-color: $jet !important;
+	table {
+		td.gutter {
+			border-right: 3px solid #435A5F !important;
+			.line {
+				border: 0 !important;
+			}
+		}
+		td {
+			.line {
+				background-color: $jet !important;
+			}
+			code, .line {
+				font-size: 0.85rem !important;
+			}
+			padding: 1em !important;
+		}
+	}
+}
+
+
+@media #{$medium-up} {  
+	header {
+		h1 {
+			display: inline;
+		}
+	}
+}
+
+
+
+/**
+ *
+ * Large tablets and small notebooks
+ * 
+ */
+
+@media #{$large-up} {  
+	p, ul, pre {
+		font-size: 0.9rem;
+	}
+	ul {
+		li {
+			padding-left: 1em;
+		}
+	}
+	section#main {
+		.content {
+			padding-left: 1em;
+		}
+	}
+	header {
+		#nav {
+			float: right;
+			padding-top: 0.2em;
+			a {
+				margin-right: 0;
+				margin-left: 1em;
+			}
+		}
+	}
+}
+
+@media #{$large-only} { }
+
+
+
