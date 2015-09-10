@@ -16,7 +16,7 @@ use Phalcana\Exceptions\HTTP404,
  */
 class GuideController extends \Phalcon\Mvc\Controller
 {
-	
+
 
 	public function initialize()
 	{
@@ -27,17 +27,17 @@ class GuideController extends \Phalcon\Mvc\Controller
         // CSS in the header
         $this->assets
             ->collection('cssHeader')
-            ->addCss('public/guide/css/guide.css');
+            ->addCss('/public/guide/css/guide.css');
 
         // Javascripts in the header
         $this->assets
             ->collection('jsHeader')
-            ->addJs('public/guide/js/modernizr.js');
+            ->addJs('/public/guide/js/modernizr.js');
 
         // Javascripts in the footer
         $this->assets
             ->collection('jsFooter')
-            ->addJs('public/guide/js/guide.js');
+            ->addJs('/public/guide/js/guide.js');
 
 		// CSS in the footer
 		$this->assets
@@ -66,9 +66,9 @@ class GuideController extends \Phalcon\Mvc\Controller
 	{
 		$this->view->setVar('menu', $this->conf->modules);
 
-		
+
 	}
-		
+
 	/**
 	 * Handle a userguide page based on the parameters passed to the router parsind the markdowns
 	 **/
@@ -78,7 +78,7 @@ class GuideController extends \Phalcon\Mvc\Controller
 
 		$module = $this->dispatcher->getParam('mod');
 		$page = $this->dispatcher->getParam('page');
-		
+
 		if (!$page) $page = 'index';
 
 		// load the routes so they are relative to the current user guide
@@ -91,12 +91,12 @@ class GuideController extends \Phalcon\Mvc\Controller
 
         // Parse the menu for the module
 		$menuMd = $this->markdown->transform(file_get_contents($menu));
-		
+
 		// find the page file based on the passed variable
 		$file = $this->fs->findFile('guide/'.$module, $page, 'md');
 		if (!$file) throw new HTTP404();
-		
-		
+
+
         // Parse the file for the page
 		$md = $this->markdown->transform(file_get_contents($file));
 
@@ -104,7 +104,7 @@ class GuideController extends \Phalcon\Mvc\Controller
 		$this->view->setVar('html', $md);
 
 	}
-		
+
 
 	/**
 	 * Load the API page for the given class
@@ -120,7 +120,7 @@ class GuideController extends \Phalcon\Mvc\Controller
 
 		if ($this->dispatcher->getParam('class')) {
 			$cl = str_replace('_', '\\', $this->dispatcher->getParam('class'));
-			
+
 			// Check class exists
 			if (!class_exists($cl)) throw new HTTP404();
 
