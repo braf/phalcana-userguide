@@ -17,6 +17,6 @@
     },
     "require": {
         "phalcana/installer": "dev-master",
-        "michelf/php-markdown": "dev-master"
+        "michelf/php-markdown": "^1.5"
     }
 }
