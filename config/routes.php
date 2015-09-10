@@ -1,30 +1,24 @@
-<?php 
+<?php
 // Routes here
 
 
-$group = new Phalcon\Mvc\Router\Group(array(
+$group = new Phalcana\Mvc\Router\Group(array(
 	'namespace' => 'Phalcana\Controllers\Guide',
 	'controller' => 'guide',
 	'action' => 'index',
 ));
 
-$group->setPrefix('/guide');
+$group->setPrefix('guide');
 
 $group->add("");
 
-$group->add("/{mod:[a-z\-]+}", array(
+$group->add("/<mod>(/<page>)", array(
 	'action' => 'module',
+    'mod' => '[a-z\-]+',
+    'page' => '[a-z\-\/]+'
 ));
 
-$group->add("/{mod:[a-z\-]+}/{page:[a-z\-\/]+}", array(
-	'action' => 'module',
-));
-
-$group->add("/api", array(
-	'action' => 'apiBrowser',
-));
-
-$group->add("/api/{class}", array(
+$group->add("/api(/<class>)", array(
 	'action' => 'apiBrowser',
 ));
 
