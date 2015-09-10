@@ -16,7 +16,8 @@
         "issues": "https://github.com/braf/phalcana-userguide/issues"
     },
     "require": {
-        "phalcana/installer": "dev-master",
+        "phalcana/installer": "^0.8",
+        "phalcana/core": "^0.8",
         "michelf/php-markdown": "^1.5"
     }
 }
