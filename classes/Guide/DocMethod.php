@@ -96,7 +96,7 @@ class DocMethod extends Injectable
         $this->tags = $tags;
     }
 
-    public function params_short()
+    public function paramsShort()
     {
         $out = '';
         $required = true;

@@ -11,6 +11,7 @@ use Phalcon\Di\Injectable;
  * @package    Userguide
  * @category   Reflection
  * @author     Kohana Team
+ * @author     Neil Brayfield <neil@brayfield.uk>
  * @copyright  (c) 2008-2013 Kohana Team
  * @license    http://kohanaframework.org/license
  */

@@ -186,7 +186,7 @@ class DocClass extends Injectable
 
         $defaults = $this->class->getDefaultProperties();
 
-        usort($props, array($this,'_prop_sort'));
+        usort($props, array($this,'propSort'));
 
         foreach ($props as $key => $property) {
             // Create Kodoc Properties for each property
@@ -196,7 +196,7 @@ class DocClass extends Injectable
         return $props;
     }
 
-    protected function _prop_sort($a, $b)
+    protected function propSort($a, $b)
     {
         // If one property is public, and the other is not, it goes on top
         if ($a->isPublic() && ( ! $b->isPublic())) {
@@ -228,7 +228,7 @@ class DocClass extends Injectable
     {
         $methods = $this->class->getMethods();
 
-        usort($methods, array($this,'_method_sort'));
+        usort($methods, array($this,'methodSort'));
 
         foreach ($methods as $key => $method) {
             $methods[$key] = new DocMethod($this->class->name, $method->name);
@@ -246,7 +246,7 @@ class DocClass extends Injectable
      *  * lastly, they will be sorted alphabetically
      *
      */
-    protected function _method_sort($a, $b)
+    protected function methodSort($a, $b)
     {
         // If one method is public, and the other is not, it goes on top
         if ($a->isPublic() && ( ! $b->isPublic())) {
@@ -269,11 +269,11 @@ class DocClass extends Injectable
 
         /*
         echo Debug::vars('a is '.$a->class.'::'.$a->name,'b is '.$b->class.'::'.$b->name,
-                           'are the classes the same?', $a->class == $b->class,'if they are, the result is:',strcmp($a->name, $b->name),
-                           'is a this class?', $a->name == $this->class->name,-1,
-                           'is b this class?', $b->name == $this->class->name,1,
-                           'otherwise, the result is:',strcmp($a->class, $b->class)
-                           );
+           'are the classes the same?', $a->class == $b->class,'if they are, the result is:',strcmp($a->name, $b->name),
+           'is a this class?', $a->name == $this->class->name,-1,
+           'is b this class?', $b->name == $this->class->name,1,
+           'otherwise, the result is:',strcmp($a->class, $b->class)
+           );
         */
 
         // If both methods are defined in the same class, just compare the method names
@@ -309,9 +309,9 @@ class DocClass extends Injectable
 
 
     /**
-     * undocumented function
+     * Gets the class file path
      *
-     * @return  void
+     * @return  string
      * @author  Neil Brayfield
      **/
     public function filename()

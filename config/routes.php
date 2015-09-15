@@ -3,9 +3,9 @@
 
 
 $group = new Phalcana\Mvc\Router\Group(array(
-	'namespace' => 'Phalcana\Controllers\Guide',
-	'controller' => 'guide',
-	'action' => 'index',
+    'namespace' => 'Phalcana\Controllers\Guide',
+    'controller' => 'guide',
+    'action' => 'index',
 ));
 
 $group->setPrefix('guide');
@@ -13,13 +13,13 @@ $group->setPrefix('guide');
 $group->add("");
 
 $group->add("/<mod>(/<page>)", array(
-	'action' => 'module',
+    'action' => 'module',
     'mod' => '[a-z\-]+',
     'page' => '[a-z\-\/]+'
 ));
 
 $group->add("/api(/<class>)", array(
-	'action' => 'apiBrowser',
+    'action' => 'apiBrowser',
 ));
 
 $router->mount($group);
