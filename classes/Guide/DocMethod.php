@@ -1,6 +1,8 @@
-<?php 
+<?php
 
 namespace Phalcana\Guide;
+
+use Phalcon\Di\Injectable;
 
 /**
  * Class method documentation generator.
@@ -12,158 +14,136 @@ namespace Phalcana\Guide;
  * @copyright  (c) 2008-2013 Kohana Team
  * @license    http://kohanaframework.org/license
  */
-class DocMethod extends \Phalcon\Di\Injectable {
+class DocMethod extends Injectable
+{
 
-	/**
-	 * @var  ReflectionMethod  The ReflectionMethod for this class
-	 */
-	public $method;
+    /**
+     * @var  ReflectionMethod  The ReflectionMethod for this class
+     */
+    public $method;
 
-	/**
-	 * @var  array  Array of Kodoc_Method_Param
-	 */
-	public $params;
+    /**
+     * @var  array  Array of Kodoc_Method_Param
+     */
+    public $params;
 
-	/**
-	 * @var  array  The things this function can return
-	 */
-	public $return = array();
+    /**
+     * @var  array  The things this function can return
+     */
+    public $return = array();
 
-	/**
-	 * @var  string  The source code for this function
-	 */
-	public $source;
+    /**
+     * @var  string  The source code for this function
+     */
+    public $source;
 
-	public function __construct($class, $method)
-	{
-		$this->method = new \ReflectionMethod($class, $method);
+    public function __construct($class, $method)
+    {
+        $this->method = new \ReflectionMethod($class, $method);
 
-		$this->class = $parent = $this->method->getDeclaringClass();
+        $this->class = $parent = $this->method->getDeclaringClass();
 
-		if ($modifiers = $this->method->getModifiers())
-		{
-			$this->modifiers = '<small>'.implode(' ', \Reflection::getModifierNames($modifiers)).'</small> ';
-		}
+        if ($modifiers = $this->method->getModifiers()) {
+            $this->modifiers = '<small>'.implode(' ', \Reflection::getModifierNames($modifiers)).'</small> ';
+        }
 
-		do
-		{
-			if ($parent->hasMethod($method) AND $comment = $parent->getMethod($method)->getDocComment())
-			{
-				// Found a description for this method
-				break;
-			}
-		}
-		while ($parent = $parent->getParentClass());
+        do {
+            if ($parent->hasMethod($method) && $comment = $parent->getMethod($method)->getDocComment()) {
+                // Found a description for this method
+                break;
+            }
+        } while ($parent = $parent->getParentClass());
 
-		list($this->description, $tags) = $this->userguide->parse($comment);
+        list($this->description, $tags) = $this->userguide->parse($comment);
 
-		if ($file = $this->class->getFileName())
-		{
-			$this->source = $this->userguide->source($file, $this->method->getStartLine(), $this->method->getEndLine());
-		}
+        if ($file = $this->class->getFileName()) {
+            $this->source = $this->userguide->source($file, $this->method->getStartLine(), $this->method->getEndLine());
+        }
 
-		if (isset($tags['param']))
-		{
-			$params = array();
+        if (isset($tags['param'])) {
+            $params = array();
 
-			foreach ($this->method->getParameters() as $i => $param)
-			{
-				$param = new DocMethodParam(array($this->method->class, $this->method->name),$i);
+            foreach ($this->method->getParameters() as $i => $param) {
+                $param = new DocMethodParam(array($this->method->class, $this->method->name), $i);
 
-				if (isset($tags['param'][$i]))
-				{
-					preg_match('/^(\S+)(?:\s*(?:\$'.$param->name.'\s*)?(.+))?$/s', $tags['param'][$i], $matches);
+                if (isset($tags['param'][$i])) {
+                    preg_match('/^(\S+)(?:\s*(?:\$'.$param->name.'\s*)?(.+))?$/s', $tags['param'][$i], $matches);
 
-					$param->type = $matches[1];
+                    $param->type = $matches[1];
 
-					if (isset($matches[2]))
-					{
-						$param->description = ucfirst($matches[2]);
-					}
-				}
-				$params[] = $param;
-			}
+                    if (isset($matches[2])) {
+                        $param->description = ucfirst($matches[2]);
+                    }
+                }
+                $params[] = $param;
+            }
 
-			$this->params = $params;
+            $this->params = $params;
 
-			unset($tags['param']);
-		}
+            unset($tags['param']);
+        }
 
-		if (isset($tags['return']))
-		{
-			foreach ($tags['return'] as $return)
-			{
-				if (preg_match('/^(\S*)(?:\s*(.+?))?$/', $return, $matches))
-				{
-					$this->return[] = array($matches[1], isset($matches[2]) ? $matches[2] : '');
-				}
-			}
+        if (isset($tags['return'])) {
+            foreach ($tags['return'] as $return) {
+                if (preg_match('/^(\S*)(?:\s*(.+?))?$/', $return, $matches)) {
+                    $this->return[] = array($matches[1], isset($matches[2]) ? $matches[2] : '');
+                }
+            }
 
-			unset($tags['return']);
-		}
+            unset($tags['return']);
+        }
 
-		$this->tags = $tags;
-	}
+        $this->tags = $tags;
+    }
 
-	public function params_short()
-	{
-		$out = '';
-		$required = TRUE;
-		$first = TRUE;
-		foreach ($this->params as $param)
-		{
-			if ($required AND $param->default AND $first)
-			{
-				$out .= '[ '.$param;
-				$required = FALSE;
-				$first = FALSE;
-			}
-			elseif ($required AND $param->default)
-			{
-				$out .= '[, '.$param;
-				$required = FALSE;
-			}
-			elseif ($first)
-			{
-				$out .= $param;
-				$first = FALSE;
-			}
-			else
-			{
-				$out .= ', '.$param;
-			}
-		}
+    public function params_short()
+    {
+        $out = '';
+        $required = true;
+        $first = true;
+        foreach ($this->params as $param) {
+            if ($required && $param->default && $first) {
+                $out .= '[ '.$param;
+                $required = false;
+                $first = false;
+            } elseif ($required && $param->default) {
+                $out .= '[, '.$param;
+                $required = false;
+            } elseif ($first) {
+                $out .= $param;
+                $first = false;
+            } else {
+                $out .= ', '.$param;
+            }
+        }
 
-		if ( ! $required)
-		{
-			$out .= '] ';
-		}
+        if (!$required) {
+            $out .= '] ';
+        }
 
-		return $out;
-	}
+        return $out;
+    }
 
-	/**
-	 * Get the description of this method as HTML.
-	 *
-	 * @return  string  HTML
-	 */
-	public function description()
-	{
-		$result = $this->description;
+    /**
+     * Get the description of this method as HTML.
+     *
+     * @return  string  HTML
+     */
+    public function description()
+    {
+        $result = $this->description;
 
-		return $this->markdown->transform($result);
-	}
+        return $this->markdown->transform($result);
+    }
 
 
-	/**
-	 * This is a function simply to bypass an error in the volt compiler
-	 * 
-	 * @return	array Return values
-	 **/
-	public function returns()
-	{
-		return $this->return;
-	}
-
-
-} // End Kodoc_Method
+    /**
+     * This is a function simply to bypass an error in the volt compiler
+     *
+     * @return  array Return values
+     **/
+    public function returns()
+    {
+        return $this->return;
+    }
+}
