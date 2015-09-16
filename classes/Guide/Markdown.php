@@ -4,7 +4,6 @@ namespace Phalcana\Guide;
 
 use Michelf\MarkdownExtra;
 
-
 /**
  * Documentation helper
  *
