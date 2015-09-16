@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Add the markdown lib to the autoloader
 $this->loader->registerNamespaces(array('Michelf' => __DIR__.'/vendor/markdown/Michelf'), true);
