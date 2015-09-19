@@ -1,10 +1,15 @@
+[![Latest Stable Version](https://poser.pugx.org/phalcana/userguide/v/stable)](https://packagist.org/packages/phalcana/userguide)
+[![Build Status](https://travis-ci.org/braf/phalcana-userguide.svg?branch=master)](https://travis-ci.org/braf/phalcana-userguide)
+[![Total Downloads](https://poser.pugx.org/phalcana/userguide/downloads)](https://packagist.org/packages/phalcana/userguide)
+[![License](https://poser.pugx.org/phalcana/userguide/license)](https://packagist.org/packages/phalcana/userguide)
+
 # Phalcon Userguide Module
 
 Userguide module for the [Phalcana project](http://github.com/braf/phalcana-project) based on the one for Kohana.
 
 ## Installation
 
-This module is installed by default with the Phalcana project by composer when dev modules are included for more 
+This module is installed by default with the Phalcana project by composer when dev modules are included for more
 information see the [Phalcana Project](http://github.com/braf/phalcana-project).
 
 In order for the module to be loaded into Phalcana the module needs to be added into the modules config.
@@ -31,13 +36,13 @@ should be added in a `menu.md` file.
 
 ## API Browser
 
-The user guide also contains an API browser assembled from DOC blocks within the code. This works much the 
-same as PHPDocumentor and is organised by using the main class DOC blocks sorting first by `@package` then 
+The user guide also contains an API browser assembled from DOC blocks within the code. This works much the
+same as PHPDocumentor and is organised by using the main class DOC blocks sorting first by `@package` then
 by `@category`. Code blocks use Markdown to format documentation for the class and each individual function.
 For more details on the Markdown syntax please see below.
 
 ## Markdown
 
 Most of the markdown parsing is handled by [PHP Markdown](https://michelf.ca/projects/php-markdown/). For
-detailed information please visit the documentation. There are modifications that allow rewriting of local 
+detailed information please visit the documentation. There are modifications that allow rewriting of local
 links

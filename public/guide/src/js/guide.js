@@ -8,12 +8,12 @@
 
 
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-	$(document).foundation();
+    $(document).foundation();
 
-	SyntaxHighlighter.defaults['toolbar'] = false;
-	SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;
+    SyntaxHighlighter.defaults['gutter'] = false;
 
-	SyntaxHighlighter.all();
+    SyntaxHighlighter.all();
 });
