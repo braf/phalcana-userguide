@@ -7,6 +7,14 @@ php:
   - 5.5
   - 5.6
 
+branches:
+  - master
+
+env:
+  global:
+  - PHALCANA_MODE=testing
+  - PHALCANA_MODULE=userguide
+
 install:
   - composer self-update
   - git clone -q --depth=1 https://github.com/phalcon/cphalcon.git -b phalcon-v${PHALCON_VERSION}
