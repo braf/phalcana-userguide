@@ -27,3 +27,4 @@ install:
 
 script:
   - php vendor/bin/phpcs -n --standard=PSR2 --encoding=utf-8 modules/userguide/
+  - phpunit --bootstrap modules/unittest/index.php modules/unittest/tests.php
